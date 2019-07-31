@@ -49,7 +49,7 @@ t-SNE - min\_cluster\_size = 30, min\_samples = 40, alpha = 0.25; UMAP - min\_cl
 \section{Interpretation of the results}
 Some initial time analysis was done in appendix 1 (~\autoref{fig:App13} and ~\autoref{fig:App14}). The degree distribution of the initial network is on the~\autoref{fig:App17}. It follows Power law distribution: the majority of nodes have low degrees and minority - high degrees.
 
-~\autoref{fig:App18} shows degree distribution and distribution of nodes by time classes within each of 5 $k$-means clusters of the UMAP-redused set of embeddings. Characteristics of the clusters on the~\autoref{fig:App19} by their degree and time classes distribution on the ~\autoref{fig:App18} (top to bottom):
+~\autoref{fig:App18} shows degree distribution and distribution of nodes by time classes within each of 5 $k$-means clusters of the UMAP-redused set of embeddings. Characteristics of the clusters on the~\autoref{fig:App19} by their degree and time classes distributions on the ~\autoref{fig:App18} (top to bottom):
     \begin{enumerate}
         \item 1902 nodes (violet) - mean 62.4 - std 61.6
         \item 1949 nodes (blue) - mean 46 - std 64.7
@@ -83,7 +83,21 @@ The assumptions made above were based mostly on the clusters adjacency in the re
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/appendix/App18.pdf}\\
-	\caption{Degree and time classes distribution of nodes within each of 5 $k$-means clusters of the UMAP-redused set of embeddings.From the first to the fifth cluster top to bottom.}
+	\caption{Degree and time classes distributions of nodes within each of 5 $k$-means clusters of the UMAP-redused set of embeddings.From the first to the fifth cluster top to bottom.}
 	\label{fig:App18}
 \end{figure}
 
+The HDBSCAN clustering on the PCA reduced set (the best out of others according to the ensemble of internal clustering metrics), in this case, produced a poor result. ~5.5\% nodes were recognized as noise - grey colour on~\autoref{fig:App20}, ~0.4\% nodes make up two clusters, and 94\% is in the last cluster. The degree and time classes distributions of the last cluster is on the~\autoref{fig:App21} bottom.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{images/appendix/App20.pdf}\\
+	\caption{HDBSCAN clustering on PCA-reduced set of embeddings.}
+	\label{fig:App20}
+\end{figure}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/appendix/App21.pdf}\\
+	\caption{Degree and time classes distributions of nodes within the HDBSCAN clusters of the PCA-redused set of embeddings. From the first to the fourth cluster top to bottom.}
+	\label{fig:App21}
+\end{figure}
