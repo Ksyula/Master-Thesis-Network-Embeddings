@@ -2,7 +2,7 @@
 \label{appendix:k-means_time}
 
 \section{$k$-means}
-~\autoref{fig:App1} shows learned and reduced by three dimensionality reduction techniques sets of embeddings. From~\autoref{fig:App2} and~\autoref{fig:App3} one may conclude the optimal $k$ for $k$-means: PCA - $k$ = 3; t-SNE - $k$ = 3; UMAP - $k$ = 3.~\autoref{fig:App4} demonstrates the clustering results on data sets from ~\autoref{fig:App1}. The best clustering according to the set of internal clustering metrics is UMAP-reduced embeddings split into 3 clusters (right plot on~\autoref{fig:App4}).
+~\autoref{fig:App1} shows learned sets of embeddings reduced by three dimensionality reduction techniques.~\autoref{fig:App2} and~\autoref{fig:App3} provide visual insights into the optimal $k$ for $k$-means: PCA - $k$ = 3; t-SNE - $k$ = 3; UMAP - $k$ = 3.~\autoref{fig:App4} demonstrates the clustering results on data sets from ~\autoref{fig:App1}. The best clustering according to the set of internal clustering metrics is UMAP-reduced embeddings split into 3 clusters (right plot on~\autoref{fig:App4}).
 
 \begin{figure}[!ht]
 	\centering
@@ -31,7 +31,7 @@
 
 \section{HDBSCAN}
 
-The sets from~\autoref{fig:App1} were clustered by HDBSCAN.~\autoref{fig:App9} suggests the best hyperparameters: PCA - min\_cluster\_size = 10, min\_samples = 5, alpha = 0.25;
+The sets from~\autoref{fig:App1} were clustered by HDBSCAN as well.~\autoref{fig:App9} suggests the best hyperparameters: PCA - min\_cluster\_size = 10, min\_samples = 5, alpha = 0.25;
 t-SNE - min\_cluster\_size = 10, min\_samples = 5, alpha = 0.25; UMAP - min\_cluster\_size = 10, min\_samples = 40, alpha = 0.25.~\autoref{fig:App10} shows the coloured by defined HDBSCAN clusters embeddings. The best clustering according to the set of internal clustering metrics is t-SNE-reduced embeddings split into 2 clusters (middle plot on~\autoref{fig:App10}).
 
 \begin{figure}[!ht]
@@ -75,7 +75,7 @@ A node, which was active in several time classes, is assigned to the class when 
 	\label{fig:App15}
 \end{figure}
 
-A very interesting embedding pattern produces t-SNE from the set of embeddings. The distribution of time classes within 2 HDBSCAN clusters (137 and 11741 nodes) is depicted on~\autoref{fig:App16}. It is notable that some group of users have been operating within each other over time classes l-m as they are connected also by local structural component.
+HDBSCAN clusters of the t-SNE reduced set of embeddings look interesting. The distribution of time classes within 2 clusters (137 and 11741 nodes) is depicted on~\autoref{fig:App16}. It is notable that some group of users have been operating within each other over time classes $l-m$ as they are connected also by local structural component.
 
 \begin{figure}[!ht]
 	\centering

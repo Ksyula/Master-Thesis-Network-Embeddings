@@ -46,7 +46,7 @@ This section takes a close look at the evaluation and comparison of the particul
 
 \subsubsection{Determining the number of clusters}
 ~\autoref{fig:Fig37} visualizes the embeddings in 3d space after the network feature learning (local and global structural components) and dimensionality reduction stages of the pipeline. Here the global structural component was defined by degree classes. In total 12 classes were distinguished each of them counts roughly 1000 nodes. The classes implicitly denote nodes' structural importance within the network through their degree: 1-degree nodes belong to the first class, 2 and 3-degree nodes to the second class, and so forth. The last 12th class is assigned to the nodes of the highest degrees (over 90). They are the most structurally important hubs in the network.
-% \iffalse
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/evaluations/Fig37.pdf}\\
@@ -65,7 +65,6 @@ This section takes a close look at the evaluation and comparison of the particul
 	\caption{Evaluation of $k$-means clustering with respect to the number of clusters $k$.}
 	\label{fig:Fig39}
 \end{figure}
-% \fi
 
 Elbow criterion facilitates the choice of an appropriate number of clusters for $k$-means. However, the elbow curves on the~\autoref{fig:Fig38} still leave some room to speculate about the right numbers of clusters: 3 or 4 clusters for PCA embeddings, 5 clusters for t-SNE, and 4 or 5 clusters for UMAP embeddings. To reduce that uncertainty it is helpful to compute the internal clustering measures for different numbers of $k$. ~\autoref{fig:Fig39} provides visualizations of measures' values varying with the increasing numbers of $k$ for every reduced embeddings set. The vertical lines at each plot denote the best choice of $k$ suggested by a particular measure (max or min).
 
@@ -76,14 +75,14 @@ The comprehensive analysis of the metrics from~\autoref{fig:Fig38} and ~\autoref
     \item although Dunn and SD Validity indices do not reach extremum at $k = 5$, they demonstrate slight convex and concave respectively at this point.
 \end{enumerate}
 The above intuition works for the rest cases for choosing $k$ in $k$-means clustering. ~\autoref{fig:Fig40} shows the resulting $k$-means clustering of initial sets from ~\autoref{fig:Fig37}. Refer to appendix 1-2 for the rest of the cases.  §
-% \iffalse
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/evaluations/Fig40.pdf}\\
 	\caption{Embeddings sets coloured by k-means clusters.}
 	\label{fig:Fig40}
 \end{figure}
-% \fi
+
 \subsubsection{Finding the best $k$-means clustering}
 \label{Finding the best $k$-means clustering}
 The previous section explains the choice of $k$ in $k$-means clustering. The current section compares clustering results among pipeline's branches ending by $k$-means.~\autoref{tab:tab5} collected the internal clustering metrics values rounded to the third digit (or other where appropriate) for each of nine $k$-means clusterings. The metrics were extensively discussed in the~\ref{Cluster evaluation strategies} along with their respective optima. The closest to optima values of measures are highlighted bold. The best values belong to $k$-means clustering of embeddings learned from the local and global structural components of the network and then reduced by UMAP. This clustering reaches the best or the second-best values in seven metrics out of eight. The visualization of the leading $k$-means clustering in a metric space is depicted on the~\autoref{fig:Fig40} right.
@@ -121,7 +120,6 @@ Unlike $k$-means clustering where a number of clusters is a user-defined paramet
 
 ~\autoref{fig:Fig41} shows the varying values of the internal clustering metrics over different combinations of HDBSCAN hyperparameters for the embeddings learned from the local and global structural components of the network. In case of t-SNE-reduced embeddings set, the best choice of three hyperparameters are 20 for minimum cluster size, 5 for minimum number of samples, and 0.25 for alpha.~\autoref{fig:Fig42} visualizes the reduced embeddings from ~\autoref{fig:Fig37} coloured according to the HDBSCAN defined clusters (in this case 2 clusters in every set). Refer to the appendix 1-2 for HDBSCAN clustering evaluations of the other branches' results ending by HDBSCAN.
 
-% \iffalse
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/evaluations/Fig41.pdf}\\
@@ -134,7 +132,6 @@ Unlike $k$-means clustering where a number of clusters is a user-defined paramet
 	\caption{Embeddings sets coloured by HDBSCAN clusters.}
 	\label{fig:Fig42}
 \end{figure}
-% \fi
 
 \subsubsection{Finding the best HDBSCAN clustering}
 The best HDBSCAN clustering will be chosen from the nine possible reduced data sets.~\autoref{tab:tab6} presents the internal clustering metrics' values for HDBSCAN clustering. The best clustering is determined likewise~\ref{Finding the best $k$-means clustering}. In the current case, UMAP-reduced data set learned from the local and global structural components of the network is superior over others. It has the best values for two metrics (highlighted bold) and the second-best values for another two.
@@ -165,14 +162,13 @@ CH     & 838.4 & 117.9 & 128.2 & \textbf{3715.2} & 742.1 & 3557.9 & 850.4 & 313.
 \label{Comparison clustering results of $k$-means and HDBSCAN}
 
 After identification of the optimal values for hyperparameters, exploring and comparing the clustering results of differently reduced datasets, the last step is to find the best clustering result of the pipeline.~\autoref{fig:Fig42} visualizes the two leading clustering splits and ~\autoref{tab:tab7} compares them by means of the internal clustering measures. The precise comparison of measures' magnitudes does not define a clear winner in this case. Furthermore, the three metrics out of six (Silhouette coefficient, S\_Dbw Validity and Davies–Bouldin indices) have very close values for two results. The remainder of the chapter is devoted to interpretation and comparison of these results. Additionally, the detailed evaluations of other clustering results that have not been mentioned above can be found in appendices 1-2.
-% \iffalse
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/evaluations/Fig43.pdf}\\
 	\caption{From left to right: Embeddings learned from the local and global structural components of the network; the same coloured by k-means clusters' labels (k=4); the same coloured by HDBSCAN clusters' labels (2 clusters).}
 	\label{fig:Fig43}
 \end{figure}
-% \fi
 
 \begin{table}
 \begin{center}
@@ -203,7 +199,6 @@ This section takes a close look at the resulting clusters from~\ref{Comparison c
         \item The forth cluster contains 754 nodes with mean of degrees equal to 165.9 and standard deviation - 118.8 (green data points on the centre plot on the~\autoref{fig:Fig43})
     \end{itemize}
     
-% \iffalse
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/evaluations/Fig44.pdf}\\
@@ -215,14 +210,12 @@ The first cluster is the most numerous since more than a third of the network's 
 
 The fourth cluster of green colour on the~\autoref{fig:Fig43} consists of the nodes characterized by the highest degrees. This cluster is compact and well-separated from the rest of the network's nodes because of the particular degree classes allocation strategy. 12 degree classes were initially distinguished in the network. Nodes of the degrees from 1 to 90 were distributed over the first 11 classes while the rest nodes of the highest degrees from 90 to 1364 were assigned to the last class. The ordered sequences include hubs of different high degrees surrounded by the same degree class. This leads to the skip-gram model producing embeddings for hubs closer together because of the same degree class and pays less attention to the local component. That is why the low-dimensional representation places the cluster of hubs aside from other clusters. To confirm this reasoning, a more gradual degree classes split of 16 classes was tested on the~\autoref{fig:Fig46}. The smooth transition between clusters is clearly tracked here.
 
-% \iffalse
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.4\textwidth]{images/evaluations/Fig46.pdf}\\
 	\caption{Pipeline branch outcome visualization: local+global components -> UMAP -> $k$-means clustering (k=16).}
 	\label{fig:Fig46}
 \end{figure}
-% \fi
 
 The HDBSCAN outputs more coarse clusters than $k$-means under the all combinations of hyperparameters. The 27 combinations of hyperparameters min\_cluster\_size $\in$ [10,20,30], min\_samples $\in$ [5,20,40], and alpha $\in$ [0.25, 1.0, 1.3] leads to the same result of two separated clusters on the~\autoref{fig:Fig43} right. The nodes' degree distribution by clusters is on the~\autoref{fig:Fig44}. 
 \begin{figure}[H]
@@ -231,7 +224,7 @@ The HDBSCAN outputs more coarse clusters than $k$-means under the all combinatio
 	\caption{Degree distribution of nodes in 2 HDBSCAN defined clusters. From the first to the second cluster top to bottom}
 	\label{fig:Fig45}
 \end{figure}
-% \fi
+
     \begin{itemize}
         \item The first cluster consists of 11 126 nodes with the mean degree equal to 21.5. Its standard deviation is lower than the second cluster has - 20.9 (yellow data points on the right plot on the~\autoref{fig:Fig43}).
         \item the second cluster of HDBSCAN repeats the fourth cluster in $k$-means clustering: 754 nodes, mean of degrees equal to 165.9, standard deviation - 118.8 (violet data points on the right plot on the~\autoref{fig:Fig43})
