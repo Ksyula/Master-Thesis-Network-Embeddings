@@ -15,6 +15,6 @@ pillow==4.2.1
 Cython==0.29.7
 node2vec==0.2.2
 # hdbscan==0.8.22
-umap==0.3.9
+umap==0.1.1
 itertools==2.7
 
