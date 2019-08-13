@@ -2,37 +2,16 @@
 import os
 import dash
 
-# from demo import demo_layout, demo_callbacks
 from local import local_layout, local_callbacks
-
-#os.environ['DYNO'] = 'True'
 
 app = dash.Dash(__name__)
 server = app.server
 
-if 'DYNO' in os.environ:
-    app.scripts.append_script({
-        'external_url': 'https://codepen.io/plotly/pen/BGyZNa.js'
-    })
+demo_mode = False
 
-    demo_mode = True
-else:
-    demo_mode = False
+app.layout = local_layout
 
-
-# App
-if demo_mode:
-    app.layout = demo_layout
-else:
-    app.layout = local_layout
-
-
-# Callbacks
-if demo_mode:
-    demo_callbacks(app)
-else:
-    local_callbacks(app)
-
+local_callbacks(app)
 
 # Load external CSS
 external_css = [
@@ -47,4 +26,4 @@ for css in external_css:
 
 # Running the server
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

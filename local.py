@@ -709,7 +709,9 @@ def local_callbacks(app):
                          n_neighbors, min_dist, metric,             # UMAP params
                          perplexity, n_iter, learning_rate        # t-SNE params
                          ):
-        if n_clicks > 0:
+        if n_clicks <= 0:
+            global data
+        else:
             data_df = np.array(pd.read_csv("data/output_embeddings.csv"))
             #### k-means
             if clustering == 'k_means':
@@ -737,7 +739,6 @@ def local_callbacks(app):
                     tsne_data_df = pd.DataFrame(embeddings, columns=['x', 'y', 'z'])
 
                     combined_df = tsne_data_df.join(kmeans_labels)
-
                 elif dimreduction == 'pca':
 
                     pca = PCA(n_components=3, svd_solver='full')
@@ -786,7 +787,6 @@ def local_callbacks(app):
                     tsne_data_df = pd.DataFrame(embeddings, columns=['x', 'y', 'z'])
 
                     combined_df = tsne_data_df.join(hdbscan_labels)
-
                 elif dimreduction == 'pca':
 
                     pca = PCA(n_components=3, svd_solver='full')
@@ -802,7 +802,6 @@ def local_callbacks(app):
                     combined_df = pca_data_df.join(hdbscan_labels)
 
             data = []
-
             # Group by the values of the label
             for idx, val in combined_df.groupby('label'):
                 scatter = go.Scatter3d(
@@ -819,16 +818,16 @@ def local_callbacks(app):
                 data.append(scatter)
 
         return [
-        # The clustered graph
-        dcc.Graph(
-            id='clustering-3d-plot',
-            figure={
-                'data': data,
-                'layout': tsne_layout
-            },
-            style={
-                'height': '60vh',
-            },
+            # The clustered graph
+            dcc.Graph(
+                id='clustering-3d-plot',
+                figure={
+                    'data': data,
+                    'layout': tsne_layout
+                },
+                style={
+                    'height': '60vh',
+                },
             )
         ]
 
