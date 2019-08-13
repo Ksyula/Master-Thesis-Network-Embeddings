@@ -2,7 +2,7 @@
 import os
 import dash
 
-from demo import demo_layout, demo_callbacks
+# from demo import demo_layout, demo_callbacks
 from local import local_layout, local_callbacks
 
 #os.environ['DYNO'] = 'True'

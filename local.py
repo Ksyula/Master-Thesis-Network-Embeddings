@@ -710,7 +710,7 @@ def local_callbacks(app):
                          perplexity, n_iter, learning_rate        # t-SNE params
                          ):
         if n_clicks > 0:
-            data_df = np.array(pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_embeddings.csv"))
+            data_df = np.array(pd.read_csv("data/output_embeddings.csv"))
             #### k-means
             if clustering == 'k_means':
                 if dimreduction == 'umap':
@@ -1026,8 +1026,8 @@ def local_callbacks(app):
                 labels = [int(i) for i in nodes_str]
                 print(embeddings.shape, file=sys.stderr)
             # Writing the data:
-            np.savetxt('/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_embeddings.csv', np.insert(embeddings, 0, np.arange(dimensions, dtype=int), axis=0), delimiter=',', fmt='%.4f')
-            with open('/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_labels.csv', 'w') as f:
+            np.savetxt('data/output_embeddings.csv', np.insert(embeddings, 0, np.arange(dimensions, dtype=int), axis=0), delimiter=',', fmt='%.4f')
+            with open('data/output_labels.csv', 'w') as f:
                 f.write("0\n")
                 for item in labels:
                     f.write("%s\n" % item)
@@ -1118,8 +1118,8 @@ def local_callbacks(app):
 
         else:
             print("n_clicks___ = ", n_clicks)
-            data_df = np.array(pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_embeddings.csv"))
-            label_df = pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_labels.csv")
+            data_df = np.array(pd.read_csv("data/output_embeddings.csv"))
+            label_df = pd.read_csv("data/output_labels.csv")
 
             # Fix the range of possible values
             if n_iter > 1000:
@@ -1234,8 +1234,8 @@ def local_callbacks(app):
             global data
         else:
             print("n_clicks_umap = ", n_clicks)
-            data_df = pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_embeddings.csv")
-            label_df = pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_labels.csv")
+            data_df = pd.read_csv("data/output_embeddings.csv")
+            label_df = pd.read_csv("data/output_labels.csv")
 
 
             # Fix the range of possible values
@@ -1309,8 +1309,8 @@ def local_callbacks(app):
             global data
         else:
             print("n_clicks_pca = ", n_clicks)
-            data_df = pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_embeddings.csv")
-            label_df = pd.read_csv("/Users/ksenia/Documents/Abschlussarbeit/Network_embedding/app/dash/data/output_labels.csv")
+            data_df = pd.read_csv("data/output_embeddings.csv")
+            label_df = pd.read_csv("data/output_labels.csv")
 
            # apply PCA with the input parameters
             pca = PCA(n_components = 3, svd_solver='full')

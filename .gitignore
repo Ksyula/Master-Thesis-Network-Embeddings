@@ -1,6 +1,0 @@
-*.zip
-*.iml
-*.xml
-notebooks/.ipynb_checkpoints
-*.pyc
-web-app/.idea
